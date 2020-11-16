@@ -1,0 +1,7 @@
+cinema\bean\Movie.class
+cinema\bean\Timetable.class
+cinema\bean\MovieHall.class
+cinema\bean\User.class
+cinema\dao\UserDao.class
+cinema\servlet\addUserServlet.class
+cinema\bean\Seat.class

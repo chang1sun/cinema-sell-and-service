@@ -1,0 +1,36 @@
+body, table, td, input, select, textarea{
+    font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+h2.title{
+    font-family: "微软雅黑";
+    font-weight: bold;
+    text-align: center;
+    color: #0000FF;
+}
+table.default {
+    border: 1px solid #FFFFFF;
+    border-collapse: collapse;
+    width: 35%;
+}
+table.default td.item{
+    font-weight: bold;
+    color: #333333;
+    text-align: right;
+    vertical-align: top;
+    padding: 10pt;
+}
+table.default td{
+    padding: 2px 5px 2px 5px;
+    height: 26px;
+    border: 1px solid #FFFFFF;
+    background-color: #F0F0F0;
+}
+.btn{
+    font-size: 9pt;
+    color: #003399;
+    border: 1px solid #93BEE2;
+    cursor: hand;
+    width: 60px;
+    height: 22px;
+}

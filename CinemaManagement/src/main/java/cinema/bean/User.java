@@ -1,15 +1,15 @@
 package cinema.bean;
 
 public class User {
-    private String name;
+    private String id;
     private String password;
 
-    public String getName(){
-        return name;
+    public String getId(){
+        return id;
     }
     public String getPassword() {return password;}
-    public void setName(String name){
-        this.name = name;
+    public void setId(String name){
+        this.id = name;
     }
     public void setPassword(String pw){
         this.password = pw;

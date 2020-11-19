@@ -16,8 +16,15 @@
 </head>
 <body>
 <h2 class = "title" align="center">用户登录</h2>
-<form method = "post" name="form1" onsubmit="return check()">
+<form method = "post" name="form1" action="<%=request.getContextPath()%>/applyLogin">
     <table class="default" align="center">
+        <tr><td>
+            <%
+            if(request.getAttribute("message")!= null){
+                out.print(request.getAttribute("message"));
+            }
+        %>
+        </td></tr>
         <tr><td class="item">用户名</td><td><input type="text" name="name"></td></tr>
         <tr><td class="item">密码</td><td><input type="password" name="pw"></td></tr>
         <tr><td colspan="2" align="center">

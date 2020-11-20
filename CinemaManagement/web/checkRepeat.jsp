@@ -8,10 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String name = request.getParameter("name");
-    if (new UserDao().checkValid(name)) {
-        out.println("可以使用");
+    if(name==null){
+        out.print("<font color='red'>不能为空</font>");
+    }
+    if (!new UserDao().checkNameRepeat(name)) {
+        out.println("<font color='red'>已经存在</font>");
     }
     else {
-        out.println("已经存在");
+        out.println("<font color='green'>可以使用</font>");
     }
 %>

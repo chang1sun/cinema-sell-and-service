@@ -3,7 +3,6 @@ package cinema.bean;
 public class User {
     private String id;
     private String password;
-
     public String getId(){
         return id;
     }

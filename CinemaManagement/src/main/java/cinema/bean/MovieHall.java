@@ -3,17 +3,17 @@ package cinema.bean;
 import javax.print.DocFlavor;
 
 public class MovieHall {
-    private int id;
     private String address;
     private String name;
     private int col;
     private int row;
 
     public MovieHall(){}
-
-    public int getId(){
-        return id;
+    public MovieHall(String name, String address){
+        this.name = name;
+        this.address = address;
     }
+
     public String getName(){
         return name;
     }
@@ -25,9 +25,6 @@ public class MovieHall {
     }
     public int getRow(){
         return row;
-    }
-    public void setId(int id){
-        this.id = id;
     }
     public void setAddress(String addr){
         this.address = addr;

@@ -20,7 +20,7 @@ public class UserDao {
     }
 
     public Connection getConnection() throws SQLException{
-        return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cinema?characterEncoding=UTF-8", "root", "058918");
+        return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cinema?characterEncoding=UTF-8&serverTimezone=UTC", "root", "058918");
     }
 
     public boolean checkValid(User user){
@@ -39,7 +39,7 @@ public class UserDao {
         return false;
     }
 
-    public boolean checkValid(String name){
+    public boolean checkNameRepeat(String name){
         try (Connection c = getConnection();){
             String sql = "select * from m_user where User_ID = ?";
             PreparedStatement ps = c.prepareStatement(sql);
@@ -51,7 +51,7 @@ public class UserDao {
         catch(SQLException e){
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     public boolean addUser(User user){

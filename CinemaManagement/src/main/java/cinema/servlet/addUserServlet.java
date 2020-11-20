@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet("/applyRegister")
 public class addUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
+        String name = req.getParameter("username");
         String pw = req.getParameter("pw");
         User user = new User();
         user.setId(name);
@@ -22,11 +24,12 @@ public class addUserServlet extends HttpServlet {
         UserDao dao = new UserDao();
         boolean flag = dao.addUser(user);
         if(flag){
-            req.setAttribute(",message", "注册成功!");
-        }else{
+            String url = URLEncoder.encode(req.getContextPath()+"/index.jsp?message=注册成功！", StandardCharsets.UTF_8);
+            resp.sendRedirect(url);
+        }else {
             req.setAttribute("message", "注册失败!");
+            req.getRequestDispatcher("/register.jsp").forward(req, resp);
         }
-        req.getRequestDispatcher("/register.jsp").forward(req, resp);
 
     }
 }

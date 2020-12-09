@@ -24,8 +24,7 @@ public class addUserServlet extends HttpServlet {
         UserDao dao = new UserDao();
         boolean flag = dao.addUser(user);
         if(flag){
-            String url = URLEncoder.encode(req.getContextPath()+"/index.jsp?message=注册成功！", StandardCharsets.UTF_8);
-            resp.sendRedirect(url);
+            resp.sendRedirect(req.getContextPath()+"/index.jsp?message=Registered Successfully!");
         }else {
             req.setAttribute("message", "注册失败!");
             req.getRequestDispatcher("/register.jsp").forward(req, resp);

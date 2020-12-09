@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class redirectTimetableServlet extends HttpServlet {
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        session.setAttribute("mhName", request.getParameter("mhName"));
+        session.setAttribute("movieHall", new MovieHallDao().getMovieHallByName(request.getParameter("mhName")));
         ArrayList<Timetable> timetables = new MovieHallDao().getAllTimetable(request.getParameter("mhName"));
         session.setAttribute("timetables", timetables);
         response.sendRedirect(request.getContextPath()+"/showTimetable.jsp");

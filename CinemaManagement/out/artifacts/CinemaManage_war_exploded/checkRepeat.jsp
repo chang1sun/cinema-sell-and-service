@@ -12,9 +12,11 @@
         out.print("<font color='red'>不能为空</font>");
     }
     if (!new UserDao().checkNameRepeat(name)) {
-        out.println("<font color='red'>已经存在</font>");
+        if("root".equals(request.getSession(true).getAttribute("username"))){out.println("<font color='red'>可以执行</font>");}
+        else{out.println("<font color='red'>已经存在</font>");}
     }
     else {
-        out.println("<font color='green'>可以使用</font>");
+        if("root".equals(request.getSession(true).getAttribute("username"))){out.println("<font color='red'>查无此人</font>");}
+        else{out.println("<font color='green'>可以使用</font>");}
     }
 %>

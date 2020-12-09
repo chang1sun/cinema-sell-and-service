@@ -55,7 +55,7 @@ public class UserDao {
     }
 
     public boolean addUser(User user){
-        try(Connection c = getConnection();){
+        try(Connection c = getConnection()){
             String sql = "insert into m_user values(?, ?)";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, user.getId());
@@ -70,7 +70,7 @@ public class UserDao {
     }
 
     public boolean updateUser(String id, String pw){
-        try(Connection c = getConnection();){
+        try(Connection c = getConnection()){
             String sql = "update m_user set Password = ? where User_ID = ?";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, pw);
@@ -84,4 +84,36 @@ public class UserDao {
         return false;
     }
 
+    public boolean deleteUser(String name){
+        try(Connection c = getConnection()){
+            String sql = "delete from m_user where User_ID = ?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.execute();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public ArrayList<User> getAllUser(){
+        try (Connection c = getConnection();){
+            String sql = "select * from m_user";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<User> arr = new ArrayList<>();
+            while (rs.next()) {
+                User user = new User(rs.getString(1),rs.getString(2));
+                arr.add(user);
+            }
+            if (arr.isEmpty()){return null;}
+            return arr;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -38,4 +38,9 @@ public class MovieHall {
     public void setRow(int row){
         this.row = row;
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

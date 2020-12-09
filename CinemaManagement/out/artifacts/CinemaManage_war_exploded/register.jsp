@@ -47,7 +47,6 @@
 </head>
 <body>
 <div class="container">
-
     <form method="post" class="form-signin" action="<%=request.getContextPath()%>/applyRegister" onsubmit="return checkBeforeSubmit()">
         <h2 class="form-signin-heading">注册</h2>
         <label for="inputEmail" class="sr-only">用户名</label>
@@ -60,34 +59,7 @@
         <input type="password" name="pw2" id="checkPassword" class="form-control" placeholder="确认密码" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     </form>
-    <div align="center"><a href="index.jsp">已有账号？点击登录！</a><div>
-
-    </div> <!-- /container -->
+    <div align="center"><a href="index.jsp">已有账号？点击登录！</a></div>
+</div>
 </body>
 </html>
-
-<%--<body>--%>
-<%--<h2 class = "title" align="center">用户注册</h2>--%>
-<%--<form method = "post" name="form1" onsubmit="return checkBeforeSubmit()" action="applyRegister">--%>
-<%--    <table class="default" align="center">--%>
-<%--        <tr><td class="item">姓名</td><td>--%>
-<%--            <input id="b1" type="text" name="name" onkeyup="checkRepeat()">--%>
-<%--            <div id="nameError" style="display:inline;color:#ff0000;"></div>--%>
-<%--        </td></tr>--%>
-<%--        <tr><td class="item">密码</td><td>--%>
-<%--            <input type="password" name="pw">--%>
-<%--            <div id="passwordError" style="display:inline;color:red;"></div>--%>
-<%--        </td></tr>--%>
-<%--        <tr><td class="item">确认密码</td><td>--%>
-<%--            <input type="password" name="pw2">--%>
-<%--            <div id="relpasswordError" style="display:inline;color:red;"></div>--%>
-<%--        </td></tr>--%>
-<%--        <tr><td colspan="2" align="center">--%>
-<%--            <input type="submit" value="注册" class="btn" align="center"></td></tr>--%>
-<%--        <tr><td align="center">--%>
-<%--            <a href="index.jsp">已有账号？点击登录！</a>--%>
-<%--        </td></tr>--%>
-<%--    </table>--%>
-<%--</form>--%>
-<%--</body>--%>
-<%--</html>--%>

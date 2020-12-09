@@ -53,6 +53,11 @@ body {
     margin-left: auto;
 }
 
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+}
+
 /* Padding for spacing */
 .inner {
     padding: 30px;
@@ -94,6 +99,7 @@ body {
     color: #fff;
     border-bottom-color: #fff;
 }
+
 
 @media (min-width: 768px) {
     .masthead-brand {
@@ -152,12 +158,18 @@ body {
     .cover-container {
         width: 100%; /* Must be percentage or pixels for horizontal alignment */
     }
+    .container-fluid{
+        width: 100%;
+    }
 }
 
 @media (min-width: 992px) {
     .masthead,
     .mastfoot,
     .cover-container {
+        width: 700px;
+    }
+    .container-fluid{
         width: 700px;
     }
 }

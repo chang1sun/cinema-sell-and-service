@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.sql.Timestamp;
 public class Timetable {
 
-    private int id;
+    private String id;
     private String mhName;
     private String mName;
     private double price;
@@ -14,7 +14,7 @@ public class Timetable {
 
     public Timetable(){}
 
-    public int getId(){
+    public String getId(){
         return id;
     }
     public String getMhName(){
@@ -32,7 +32,7 @@ public class Timetable {
     public Timestamp getEndTime(){
         return endTime;
     }
-    public void setId(int id){
+    public void setId(String  id){
         this.id = id;
     }
     public void setMhName(String name){

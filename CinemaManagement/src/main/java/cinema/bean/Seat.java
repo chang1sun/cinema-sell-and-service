@@ -1,32 +1,35 @@
 package cinema.bean;
 
 public class Seat {
-    private int id;
-    private int rowNo;
-    private int colNo;
-    private int movieHallId;
+    private String id;
+    private String row;
+    private String col;
+    private String movieHallId;
 
     public Seat(){}
 
-    public int getId(){
+    public String getId(){
         return id;
     }
-    public int getRowNo(){
-        return rowNo;
+    public String getRowNo(){
+        return row;
     }
-    public int getColNo(){
-        return colNo;
+    public String getColNo(){
+        return col;
     }
-    public int getMovieHallId(){
+    public String getMovieHallId(){
         return movieHallId;
     }
-    public void setId(int id){
+    public void setId(String id){
         this.id = id;
     }
-    public void setRowNo(int rowNo){
-        this.rowNo = rowNo;
+    public void setRowNo(String rowNo){
+        this.row = rowNo;
     }
-    public void setMovieHallId(int movieHallId){
+    public void setColNo(String colNo){
+        this.col = colNo;
+    }
+    public void setMovieHallId(String movieHallId){
         this.movieHallId = movieHallId;
     }
 }

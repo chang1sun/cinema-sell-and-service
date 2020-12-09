@@ -44,9 +44,9 @@
                     </h3>
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li class="active"><a href="<%=request.getContextPath()%>/home.jsp">主页</a></li>
+                            <li><a href="<%=request.getContextPath()%>/profile.jsp">我的</a></li>
+<%--                            <li><a href="#">Contact</a></li>--%>
                         </ul>
                     </nav>
                 </div>

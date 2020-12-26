@@ -27,7 +27,7 @@ public class MovieHallDao {
     }
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cinema?characterEncoding=UTF-8&serverTimezone=UTC", "root", "058918");
+        return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cinema?characterEncoding=UTF-8&serverTimezone=GMT%2B8", "root", "058918");
     }
 
     public MovieHall getMovieHallByName(String mhName) {
@@ -135,6 +135,7 @@ public class MovieHallDao {
 
     public boolean addTimetable(Timetable tt){
         try (Connection c = getConnection()) {
+
             String sql = "insert into time_table values (?,?,?,?,?,?)";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, String.format("%s", DateTimeFormatter.ofPattern("MMddhhmmss").format(LocalDateTime.now())));
@@ -145,9 +146,27 @@ public class MovieHallDao {
             ps.setString(6, tt.getMhName());
             ps.execute();
             return true;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
         return false;
+    }
+
+    public boolean updateTimetable(Timetable tt){
+        try (Connection c = getConnection()) {
+            String sql = "update time_table set Show_Time=? and End_Time=? and Price=? and MH_ID=? where SP_ID = ?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setTimestamp(1, tt.getShowTime());
+            ps.setTimestamp(2, tt.getEndTime());
+            ps.setDouble(3,tt.getPrice());
+            ps.setString(4, tt.getMhName());
+            ps.setString(3, tt.getId());
+            ps.execute();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return true;
     }
 }

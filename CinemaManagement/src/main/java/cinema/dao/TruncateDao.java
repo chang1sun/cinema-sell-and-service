@@ -15,7 +15,7 @@ public class TruncateDao {
     }
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cinema?characterEncoding=UTF-8&serverTimezone=UTC", "root", "058918");
+        return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cinema?characterEncoding=UTF-8&serverTimezone=GMT%2B8", "root", "058918");
     }
 
     public boolean truncateDatabase(){

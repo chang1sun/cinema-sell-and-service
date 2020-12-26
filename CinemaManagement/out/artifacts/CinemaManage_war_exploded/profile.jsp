@@ -13,16 +13,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=chrome">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Home</title>
-
-    <!-- Bootstrap core CSS -->
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="listCinema_css.css" rel="stylesheet">
     <script type="text/javascript">
         function showOrHide() {
@@ -40,6 +35,13 @@
                 document.getElementById("but").removeAttribute("disabled");
             }
         }
+    </script>
+    <script type="text/javascript">
+        <%if(request.getParameter("message")!=null){ %>
+            alert("<%=request.getParameter("message")%>");
+        <% }else if(request.getAttribute("message")!=null){ %>
+            alert("<%=request.getAttribute("message")%>");
+        <%} %>
     </script>
 </head>
 
@@ -70,7 +72,8 @@
             <div class="cover">
                 <div align="center">
                     <%ArrayList<String[]> tickets = (ArrayList<String[]>)session.getAttribute("tickets");%>
-                    <%if (tickets == null){out.println("<div><h2>无订单信息！</h2></div>");}else{%>
+                    <%if (tickets.isEmpty()){out.println("<div><h2>无订单信息！</h2></div>");}else{%>
+                    <div class="cover-container">
                     <table class="table">
                         <thead>
                         <tr>
@@ -95,6 +98,15 @@
                         <% } %>
                         </tbody>
                     </table>
+                    </div>
+                    <div class="cover-container">
+                    <h4>如需退票请输入下方表单并提交</h4>
+                    <form class="form-group" action="<%=request.getContextPath()%>/deleteTicket" method="post">
+                        <label for="inputTicketId" class="sr-only">退票</label>
+                        <input class="form-control text-success" id="inputTicketId" name="inputId" placeholder="请输入ID~">
+                        <button class="form-control btn-default" type="submit">确认提交</button>
+                    </form>
+                    </div>
                     <%}%>
                 </div>
             </div>

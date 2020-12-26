@@ -3,42 +3,46 @@ package cinema.bean;
 import java.util.Date;
 
 public class Movie {
-    private int id;
     private String name;
-    private String releaseTime;
+    private Date releaseTime;
     private Date stopTime;
-    private Date director;
-
+    private String director;
+    private int num;
     public Movie(){}
 
-    public int getId(){
-        return id;
-    }
-    public void setId(){
-        this.id = id;
-    }
     public String getName(){
         return name;
     }
-    public String getReleaseTime(){
+    public Date getReleaseTime(){
         return releaseTime;
     }
     public Date getStopTime(){
         return stopTime;
     }
-    public Date getDirector(){
-        return director;
+    public String getDirector(){
+        if (director!=null){
+        return director;}
+        else{
+            return "未知";
+        }
     }
-    public void setName(){
+
+    public int getNum() { return num; }
+    public void setName(String name){
         this.name = name;
     }
-    public void setReleaseTime(){
-        this.releaseTime = releaseTime;
-    }
-    public void setStopTime(){
-        this.stopTime = stopTime;
-    }
-    public void setDirector(){
+
+    public void setDirector(String director) {
         this.director = director;
     }
+
+    public void setReleaseTime(Date releaseTime) {
+        this.releaseTime = releaseTime;
+    }
+
+    public void setStopTime(Date stopTime) {
+        this.stopTime = stopTime;
+    }
+
+    public void setNum(int num) { this.num = num; }
 }

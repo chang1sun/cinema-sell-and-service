@@ -1,7 +1,10 @@
 <%@ page import="cinema.bean.Timetable" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="cinema.bean.MovieHall" %><%--
+<%@ page import="cinema.bean.MovieHall" %>
+<%@ page import="cinema.dao.MovieHallDao" %>
+<%@ page import="cinema.dao.MovieDao" %>
+<%@ page import="cinema.bean.Movie" %><%--
   Created by IntelliJ IDEA.
   User: mechrevo
   Date: 2020/11/20
@@ -20,9 +23,9 @@
     <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="listCinema_css.css" rel="stylesheet">
     <script type="text/javascript">
-        <% if (request.getAttribute("message")!=null){ %>
-        alert(<%=request.getAttribute("message")%>);
-        <% }%>
+        <%if(request.getAttribute("message")!=null){ %>
+            alert("<%=request.getAttribute("message")%>>")
+        <%} %>
     </script>
 </head>
 <body>
@@ -73,17 +76,20 @@
                             <th>开始（上映）时间</th>
                             <th>结束（散场）时间</th>
                             <th>售价</th>
+                            <th>总计影片场次</th>
                         </tr>
                         </thead>
                         <tbody>
                         <%
                             for (Timetable tt: timetables) {
+                                Movie movie =  new MovieDao().getNameByTimetable(tt.getId());
                                 out.println("<tr>");
                                 out.println(String.format("<th scope=\"row\">%s</th>", tt.getId()));
-                                out.println(String.format("<td><a href=\"seatSelect?mName=%s&timetableId=%s\">%s</td>", tt.getMName(),tt.getId(), tt.getMName()));
+                                out.println(String.format("<td><a href=\"seatSelect?mName=%s&timetableId=%s\">%s(导演：%s)</td>", tt.getMName(),tt.getId(), tt.getMName(), movie.getDirector()));
                                 out.println(String.format("<td>%s</td>", new SimpleDateFormat("MM-dd HH:mm").format(tt.getShowTime())));
                                 out.println(String.format("<td>%s</td>", new SimpleDateFormat("MM-dd HH:mm").format(tt.getEndTime())));
                                 out.println(String.format("<td>%f</td>", tt.getPrice()));
+                                out.println(String.format("<td>%d</td>", movie.getNum()));
                                 out.println("</tr>");
                             }%>
                         </tbody>

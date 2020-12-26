@@ -3,6 +3,7 @@ package cinema.dao;
 import cinema.bean.*;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +20,7 @@ public class TicketDao {
     }
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cinema?characterEncoding=UTF-8&serverTimezone=UTC", "root", "058918");
+        return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/cinema?characterEncoding=UTF-8&serverTimezone=GMT%2B8", "root", "058918");
     }
 
     public boolean deleteTicket(Timetable tt){
@@ -27,6 +28,19 @@ public class TicketDao {
             String sql = "delete from ticket where SP_ID = ?";
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setString(1, tt.getId());
+            ps.execute();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean deleteTicket(String Ticket_ID){
+        try (Connection c = getConnection()) {
+            String sql = "delete from ticket where Ticket_ID=?";
+            PreparedStatement ps = c.prepareStatement(sql);
+            ps.setString(1, Ticket_ID);
             ps.execute();
             return true;
         }
@@ -114,8 +128,9 @@ public class TicketDao {
                 res[1] = String.valueOf(rs.getString(2));
                 res[2] = String.valueOf(rs.getString(3));
                 res[3] = String.valueOf(rs.getString(4));
-                res[4] = String.valueOf(rs.getString(5));
-                res[5] = String.valueOf(rs.getString(6));
+                res[4] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(5)));
+                res[5] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(6)));
+//                String.valueOf(rs.getString(5));
                 arr.add(res);
             }
             return arr;
@@ -141,8 +156,8 @@ public class TicketDao {
                 res[1] = String.valueOf(rs.getString(2));
                 res[2] = String.valueOf(rs.getString(3));
                 res[3] = String.valueOf(rs.getString(4));
-                res[4] = String.valueOf(rs.getString(5));
-                res[5] = String.valueOf(rs.getString(6));
+                res[4] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(5)));
+                res[5] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(6)));
                 arr.add(res);
             }
             return arr;
@@ -168,8 +183,8 @@ public class TicketDao {
                 res[1] = String.valueOf(rs.getString(2));
                 res[2] = String.valueOf(rs.getString(3));
                 res[3] = String.valueOf(rs.getString(4));
-                res[4] = String.valueOf(rs.getString(5));
-                res[5] = String.valueOf(rs.getString(6));
+                res[4] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(5)));
+                res[5] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(6)));
                 arr.add(res);
             }
             return arr;
@@ -195,10 +210,11 @@ public class TicketDao {
                 res[1] = String.valueOf(rs.getString(2));
                 res[2] = String.valueOf(rs.getString(3));
                 res[3] = String.valueOf(rs.getString(4));
-                res[4] = String.valueOf(rs.getString(5));
-                res[5] = String.valueOf(rs.getString(6));
+                res[4] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(5)));
+                res[5] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(6)));
                 arr.add(res);
             }
+            System.out.println(arr);
             return arr;
         }catch (SQLException e){
             e.printStackTrace();
@@ -221,8 +237,8 @@ public class TicketDao {
                 res[1] = String.valueOf(rs.getString(2));
                 res[2] = String.valueOf(rs.getString(3));
                 res[3] = String.valueOf(rs.getString(4));
-                res[4] = String.valueOf(rs.getString(5));
-                res[5] = String.valueOf(rs.getString(6));
+                res[4] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(5)));
+                res[5] = new SimpleDateFormat("MM-dd HH:mm").format(Timestamp.valueOf(rs.getString(6)));
                 arr.add(res);
             }
             return arr;
@@ -231,5 +247,7 @@ public class TicketDao {
         }
         return null;
     }
+
+
 
 }

@@ -133,9 +133,9 @@
                         <span id="nameError" class="help-block"></span>
                         <button class="form-control" type="submit">确认拉黑</button>
                     </form>
-                    <% } %>
+                    <% }else{ %>
                     <div><h2>暂无已注册用户</h2></div>
-                    <% } %>
+                    <% }} %>
                 </div>
             </div>
 

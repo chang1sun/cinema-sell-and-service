@@ -19,11 +19,11 @@ import java.util.ArrayList;
 public class SearchTicketServlet extends HttpServlet {
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String method = req.getParameter("way");
-        HttpSession session = req.getSession(true);
-        ArrayList<String[]> arr = null;
         req.setCharacterEncoding("UTF-8");
         res.setCharacterEncoding("UTF-8");
+        String method = req.getParameter("way");
+        HttpSession session = req.getSession(true);
+        ArrayList<String[]> arr = new ArrayList<>();
         switch (method) {
             case "1" -> arr = new TicketDao().SelectAll((String) session.getAttribute("username"));
             case "2" -> arr = new TicketDao().selectTicket_ID((String) session.getAttribute("username"), req.getParameter("data"));

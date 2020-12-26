@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.security.cert.CollectionCertStoreParameters;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +25,10 @@ import java.util.Map;
 public class addTicket extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         Ticket ticket = new Ticket();
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
+
         String username = (String) session.getAttribute("username");
         String mhName = ((MovieHall) session.getAttribute("movieHall")).toString();
         String spId = ((Timetable) session.getAttribute("timetable")).getId();
@@ -32,13 +38,12 @@ public class addTicket extends HttpServlet {
 
         boolean flag = false;
         for(Map<String,String> map : list){
-            flag = false;
             String row = map.get("row");
             String col = map.get("col");
             flag = new TicketDao().addTicket(username, mhName, row, col, spId);
         }
         if(flag){
-            response.sendRedirect(request.getContextPath()+"/profile.jsp");
+            response.sendRedirect(request.getContextPath()+String.format("/profile.jsp?message=%s", URLEncoder.encode("订票成功！", StandardCharsets.UTF_8)));
         }
         else{
             request.setCharacterEncoding("utf-8");
